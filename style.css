@@ -1,14 +1,124 @@
 body {
     text-align: center;
+    background-color: #f5f5f5;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    font-family: "Special Elite"; 
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 24.2px; 
 }
 
 button {
     display: inline-block;
-    padding: 10px, 20px;
-    margin-bottom: 20px;
+    padding: 10px;
+    border: none;
+    font-family: "Special Elite";
+    border: 1px solid #f8f9fa;
+    border-radius: 4px;
+}
+
+input, select {
+    font-family: inherit;
+    font-size: 70%;
+}
+
+button:hover {
+    box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+    color: #202124;
+    cursor: pointer;
+}
+
+#newbook {
+    position: relative;
+    font-size: 38px;
+    top: 25px;
+    padding: 10px;
+}
+
+.modal {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.9), 0 7px 20px 0 rgba(0, 0, 0, 0.9);
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
+    text-align: left;
+    position: relative;
+}
+
+label {
+    width: 100px;
+    display: inline-block;
+}
+
+input {
+    width: 250px;
+    margin: 15px auto;
+}
+
+.c {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 42px;
+    padding: 10px;
+
+}
+
+table {
+    border-collapse: collapse;
+    position: absolute;
+	top: 15%;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 th, td {
-    border: 1px solid black;
+    border-bottom: 1px dotted #CCC;
     padding: 5px;
+    text-align:justify
+}
+
+.info-button {
+    background-color: #f5f5f5;
+    text-align: right;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.info-cell {
+    text-align: right;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+.remove-button {
+    font-size: 20px;
+}
+
+.status-button {
+    width: 115px;
+    font-size: 20px;
+    text-align: left;
+    justify-items: center;
 }

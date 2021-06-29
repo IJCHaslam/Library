@@ -1,3 +1,19 @@
+
+// Event listeners to open and close the form popup
+document.getElementById('newbook').addEventListener('click', () => {
+    document.querySelector('.modal').style.display = 'flex';
+});
+
+document.querySelector('.c').addEventListener('click', () => {
+    document.querySelector('.modal').style.display = 'none';
+});
+
+window.addEventListener('click', e => {
+    if (e.target == document.querySelector('.modal')) {
+        document.querySelector('.modal').style.display = 'none';
+    }
+})
+
 // let infoButtons;
 // let removeButtons;
 
@@ -6,8 +22,8 @@ let myLibrary = [];
 
 // Sample books
 addBookToLibrary("Crime and Punishment", "Fyodor Dostoyevsky", 656, "Read", "10");
-addBookToLibrary("The Grapes of Wrath", "John Steinbeck", 550, "Read", "10");
-addBookToLibrary("Stoner", "John Williams", 450, "Read", "10");
+addBookToLibrary("The Grapes of Wrath", "John Steinbeck", 479, "Read", "10");
+addBookToLibrary("Stoner", "John Williams", 278, "Read", "10");
 
 // Book constructor
 function Book(title, author, pages, status, rating) {
@@ -47,7 +63,7 @@ function displayBooks() {
     table.innerHTML = '';
     myLibrary.forEach(book => {
         let row = `<tr> 
-                    <td><button class = info-button>ℹ️</td>
+                    <td class = info-cell><button class = info-button>ℹ</td>
                     <td>${book.title}</td>
                     <td>${book.author}</td>
                     <td>${book.pages}</td>
@@ -56,34 +72,34 @@ function displayBooks() {
                     <td><button class = remove-button>&times;</button>`
         table.innerHTML += row
     });
+    // Button variables
     const removeButtons = document.getElementsByClassName('remove-button');
     const infoButtons = document.getElementsByClassName('info-button');
     const statusButtons = document.getElementsByClassName('status-button');
         for (let i = 0; i < myLibrary.length; i++) {
+            // Removes a book from the library and reloads the table
             removeButtons[i].addEventListener('click', () => {
                 let filtered = myLibrary.filter(book => book !== myLibrary[i]);
                 myLibrary = filtered;
                 displayBooks()
             });
+            // Proves info on the book as an alert. note- change to popup.
             infoButtons[i].addEventListener('click', () => {
                 alert(myLibrary[i].info());
             });
+            // Toggles through the book status on the library and reloads table each time. 
             statusButtons[i].addEventListener('click', () => {
                 if (myLibrary[i].status === "Read") {
                     myLibrary[i].status = "Not Read";
-                    console.log(myLibrary[i].status);
                     displayBooks();
                 } else if (myLibrary[i].status === "Not Read") {
                     myLibrary[i].status = "Currently Reading";
-                    console.log(myLibrary[i].status);
                     displayBooks();
                 } else if (myLibrary[i].status === "Currently Reading") {
                     myLibrary[i].status = "DNF";
-                    console.log(myLibrary[i].status);
                     displayBooks();
                 } else if (myLibrary[i].status === "DNF") {
                     myLibrary[i].status = "Read";
-                    console.log(myLibrary[i].status);
                     displayBooks();
                 }
             })
@@ -97,40 +113,41 @@ document.getElementById("submit").addEventListener('click', function submitForm(
     e.preventDefault()
     addBookFromInput();
     displayBooks()
+    document.querySelector('.modal').style.display = 'none';
 });
 
 
 
-// // Function to remove book when clear button pressed.
-function removeFromLib(book) {
-    myLibrary.splice(book, book + 1);
-    displayBooks()
-}
+// // // Function to remove book when clear button pressed.
+// function removeFromLib(book) {
+//     myLibrary.splice(book, book + 1);
+//     displayBooks()
+// }
 
-// // Alerts user with book info. nb - change to popup later
-function bookInfo(book) {
-    console.log(book.info());
-}
+// // // Alerts user with book info. nb - change to popup later
+// function bookInfo(book) {
+//     console.log(book.info());
+// }
 
-function changeStatus(book) {
-    if (book.status === "Read") {
-        book.status = "Not Read";
-        console.log(book.status);
-        displayBooks();
-    } else if (book.status === "Not Read") {
-        book.status = "Currently Reading";
-        console.log(book.status);
-        displayBooks();
-    } else if (book.status === "Currently Reading") {
-        book.status = "DNF";
-        console.log(book.status);
-        displayBooks();
-    } else if (book.status === "DNF") {
-        book.status = "Read";
-        console.log(book.status);
-        displayBooks();
-    }
-}
+// function changeStatus(book) {
+//     if (book.status === "Read") {
+//         book.status = "Not Read";
+//         console.log(book.status);
+//         displayBooks();
+//     } else if (book.status === "Not Read") {
+//         book.status = "Currently Reading";
+//         console.log(book.status);
+//         displayBooks();
+//     } else if (book.status === "Currently Reading") {
+//         book.status = "DNF";
+//         console.log(book.status);
+//         displayBooks();
+//     } else if (book.status === "DNF") {
+//         book.status = "Read";
+//         console.log(book.status);
+//         displayBooks();
+//     }
+// }
 
 
     //function displayBooks() {
