@@ -81,7 +81,10 @@ input {
     right: 0;
     font-size: 42px;
     padding: 10px;
+}
 
+.c:hover {
+    cursor: pointer;
 }
 
 table {
