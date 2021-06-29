@@ -42,6 +42,7 @@ function addBookToLibrary(title, author, pages, status, rating) {
     let newBook = new Book(title, author, pages, status, rating);
     if (myLibrary.some((book) => book.title === newBook.title)) return false;
     myLibrary.push(newBook);
+    saveLocal();
     return;
 }
 
@@ -81,7 +82,8 @@ function displayBooks() {
             removeButtons[i].addEventListener('click', () => {
                 let filtered = myLibrary.filter(book => book !== myLibrary[i]);
                 myLibrary = filtered;
-                displayBooks()
+                saveLocal();
+                displayBooks();
             });
             // Proves info on the book as an alert. note- change to popup.
             infoButtons[i].addEventListener('click', () => {
@@ -91,15 +93,19 @@ function displayBooks() {
             statusButtons[i].addEventListener('click', () => {
                 if (myLibrary[i].status === "Read") {
                     myLibrary[i].status = "Not Read";
+                    saveLocal();
                     displayBooks();
                 } else if (myLibrary[i].status === "Not Read") {
                     myLibrary[i].status = "Currently Reading";
+                    saveLocal();
                     displayBooks();
                 } else if (myLibrary[i].status === "Currently Reading") {
                     myLibrary[i].status = "DNF";
+                    saveLocal();
                     displayBooks();
                 } else if (myLibrary[i].status === "DNF") {
                     myLibrary[i].status = "Read";
+                    saveLocal();
                     displayBooks();
                 }
             })
@@ -116,7 +122,9 @@ document.getElementById("submit").addEventListener('click', function submitForm(
     document.querySelector('.modal').style.display = 'none';
 });
 
-
+function saveLocal() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+  }
 
 // // // Function to remove book when clear button pressed.
 // function removeFromLib(book) {
