@@ -20,10 +20,10 @@ window.addEventListener('click', e => {
 // Array containing books. 
 let myLibrary = [];
 
-// Sample books
-addBookToLibrary("Crime and Punishment", "Fyodor Dostoyevsky", 656, "Read", "10");
-addBookToLibrary("The Grapes of Wrath", "John Steinbeck", 479, "Read", "10");
-addBookToLibrary("Stoner", "John Williams", 278, "Read", "10");
+// // Sample books
+// addBookToLibrary("Crime and Punishment", "Fyodor Dostoyevsky", 656, "Read", "10");
+// addBookToLibrary("The Grapes of Wrath", "John Steinbeck", 479, "Read", "10");
+// addBookToLibrary("Stoner", "John Williams", 278, "Read", "10");
 
 // Book constructor
 function Book(title, author, pages, status, rating) {
@@ -112,8 +112,6 @@ function displayBooks() {
         }
 }
 
-displayBooks()
-
 // Submit button adds book to library and reloads table
 document.getElementById("submit").addEventListener('click', function submitForm(e) {
     e.preventDefault()
@@ -122,9 +120,20 @@ document.getElementById("submit").addEventListener('click', function submitForm(
     document.querySelector('.modal').style.display = 'none';
 });
 
+// Saves myLibrary to local storage
 function saveLocal() {
     localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
-  }
+}
+
+// Adds local storage books to myLibrary
+function  restoreLocal() {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+    if (myLibrary === null) myLibrary = [];
+    displayBooks();
+}
+
+// Loads books and grid on window open
+restoreLocal();
 
 // // // Function to remove book when clear button pressed.
 // function removeFromLib(book) {
