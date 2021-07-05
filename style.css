@@ -75,6 +75,10 @@ input {
     margin: 15px auto;
 }
 
+textarea {
+    vertical-align: middle;
+}
+
 .c {
     position: absolute;
     top: 0;
@@ -99,7 +103,7 @@ table {
 th, td {
     border-bottom: 1px dotted #CCC;
     padding: 5px;
-    text-align:justify
+    text-align: left;
 }
 
 .info-button {

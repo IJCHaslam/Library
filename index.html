@@ -34,11 +34,11 @@
                 <form id='form'>
                     <div>
                         <label for = "title">Title</label>
-                        <input type="text" name ="title" id="title" placeholder="What is the title of the book?">
+                        <input type="text" name ="title" id="title" placeholder="What is the title of the book?" required>
                     </div>
                     <div>
                         <label for = "author">Author</label>
-                        <input type="text" name ="author" id="author" placeholder="Who is the author?">
+                        <input type="text" name ="author" id="author" placeholder="Who is the author?" required>
                     </div>
                     <div>
                         <label for = "pages">Pages</label>
@@ -56,6 +56,10 @@
                     <div>
                         <label for = "rating">Rating</label>
                         <input type="number" min="0" max="10" name ="rating" id="rating" placeholder="What is your rating out of 10?">
+                    </div>
+                    <div>
+                        <label for = "info">Synopsis</label>
+                        <textarea rows="6" cols="30" name ="info" id="info" placeholder="Provide/copy + paste a summary of the book"></textarea>
                     </div>
                     <button type="reset">Reset</button>
                     <button type="button" id="submit">Submit</button>

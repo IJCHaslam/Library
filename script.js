@@ -26,20 +26,18 @@ let myLibrary = [];
 // addBookToLibrary("Stoner", "John Williams", 278, "Read", "10");
 
 // Book constructor
-function Book(title, author, pages, status, rating) {
+function Book(title, author, pages, status, rating, info) {
     this.title = title
     this.author = author
     this.pages = pages
     this.status = status
     this.rating = rating
-    this.info = function() {
-        return(`${title} by ${author}, ${pages} pages, ${rating}/10`)
-    }
+    this.info = info
 }
 
 // Adds book to array
-function addBookToLibrary(title, author, pages, status, rating) {
-    let newBook = new Book(title, author, pages, status, rating);
+function addBookToLibrary(title, author, pages, status, rating, info) {
+    let newBook = new Book(title, author, pages, status, rating, info);
     if (myLibrary.some((book) => book.title === newBook.title)) return false;
     myLibrary.push(newBook);
     saveLocal();
@@ -47,14 +45,15 @@ function addBookToLibrary(title, author, pages, status, rating) {
 }
 
 // Adds book from form. nb - make popup later (CSS?)
-function addBookFromInput(title, author, pages, status, rating) {
+function addBookFromInput(title, author, pages = "N/A", status, rating = "N/A", info = "No synopsis provided") {
     title = document.querySelector("#title").value;
     author = document.querySelector("#author").value;
     pages = document.querySelector("#pages").value;
     status = document.querySelector("#status").value;
     rating = document.querySelector("#rating").value;
-    if (!title || !author || !pages || !rating) return false;
-    addBookToLibrary(title, author, pages, status, rating);
+    info = document.querySelector("#info").value;
+    if (!title || !author) return false;
+    addBookToLibrary(title, author, pages, status, rating, info);
     return;
 }
 
@@ -87,7 +86,7 @@ function displayBooks() {
             });
             // Proves info on the book as an alert. note- change to popup.
             infoButtons[i].addEventListener('click', () => {
-                alert(myLibrary[i].info());
+                alert(myLibrary[i].info);
             });
             // Toggles through the book status on the library and reloads table each time. 
             statusButtons[i].addEventListener('click', () => {
